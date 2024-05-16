@@ -20,6 +20,6 @@ jobs:
 
       - name: build image
         run: |
-        docker build -t action-nginx:latest .
-        docker images
+          docker build -t my-image:latest .
+          docker images
 
