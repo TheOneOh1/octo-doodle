@@ -25,4 +25,4 @@ jobs:
 
       - name: spin up the container
         run: |
-          sudo docker run -itd -p 8080:8080 --name octo-doodle my-image
+          sudo docker run -itd -p 80:80 --name octo-doodle my-image
