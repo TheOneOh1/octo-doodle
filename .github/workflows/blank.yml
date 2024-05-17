@@ -20,6 +20,6 @@ jobs:
 
       - name: build image
         run: |
-          docker build -t my-image:latest .
-          docker images
+          sudo docker build -t my-image:latest .
+          sudo docker images
 
