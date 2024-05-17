@@ -23,3 +23,6 @@ jobs:
           sudo docker build -t my-image:latest .
           sudo docker images
 
+      - name: spin up the container
+        run: |
+          sudo docker run -itd -p 8080:8080 --name octo-doodle my-image
