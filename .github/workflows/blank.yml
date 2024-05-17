@@ -25,4 +25,4 @@ jobs:
 
       - name: spin up the container
         run: |
-          docker run -v images:images:ro -d my-image
+          sudo docker run -v images:images:ro -d my-image
