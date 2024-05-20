@@ -23,8 +23,11 @@ jobs:
           sudo docker build -t my-image:latest .
           sudo docker images
 
+      - name: stop previous container
+        run: |
+          sudo docker stop octo-doodle || true
+          sudo docker rm octo-doodle || ture
+          
       - name: spin up the container
         run: |
-          sudo docker stop octo-doodle
-          sudo docker rm octo-doodle
           sudo docker run -v images:/usr/share/nginx/html/images:ro -d my-image
