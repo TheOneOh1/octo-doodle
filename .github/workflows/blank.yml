@@ -27,4 +27,4 @@ jobs:
           
       - name: spin up the container
         run: |
-          sudo docker run -v images:/usr/share/nginx/html/images:ro -d my-image
+          sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
