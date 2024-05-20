@@ -25,8 +25,8 @@ jobs:
 
       - name: stop previous container
         run: |
-          sudo docker stop octo-doodle || true
-          sudo docker rm octo-doodle || ture
+          sudo docker stop octo-doodle; sudo docker rm octo-doodle
+          continue-on-error: true
           
       - name: spin up the container
         run: |
