@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
@@ -25,8 +22,8 @@ jobs:
 
       - name: stop previous container
         run: |
-          sudo docker stop octo-doodle; sudo docker rm octo-doodle
-          continue-on-error: true
+          chmod +x kill_container.sh
+          ./kill_container.sh
           
       - name: spin up the container
         run: |
