@@ -28,3 +28,9 @@ jobs:
       - name: spin up the container
         run: |
           sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
+
+      - name: Archive html file
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: /usr/share/nginx/html/index.html
