@@ -29,8 +29,8 @@ jobs:
         run: |
           sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
 
-      - name: Archive html file
-        uses: actions/upload-artifact@v4
-        with:
-          name: octo-doodle
-          path: ./
+      # - name: Archive html file
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: octo-doodle
+      #     path: ./
