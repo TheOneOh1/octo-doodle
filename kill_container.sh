@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if the container is running
-container_status=$(sudo docker ps -q -f name=octo-doodle)
+container_status=$(sudo docker ps -a -q -f name=octo-doodle)
 
 if [ -n "$container_status" ]; then
   echo "Container is running. Stopping and removing the container..."

@@ -34,3 +34,11 @@ jobs:
       #   with:
       #     name: octo-doodle
       #     path: ./
+  
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
