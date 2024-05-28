@@ -32,9 +32,9 @@ jobs:
       - name: Archive html file
         run: |
           docker save my-image > octo-doodle-image.tar
-            uses: actions/upload-artifact@v4
-            with:
-              path: octo-doodle-image.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          path: octo-doodle-image.tar
   
   test:
     runs-on: self-hosted
