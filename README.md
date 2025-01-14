@@ -20,3 +20,7 @@
 | kill_container.sh        | A script to stop any previously running container to avoid conflicts. |
 | sonar-project.properties | Configuration file for SonarQube code analysis.                       |
 | .github/workflows/ci.yml | The YAML file defining the GitHub Actions workflow.                   |
+
+_______________
+
+Pallavi branch created
