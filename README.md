@@ -22,5 +22,3 @@
 | .github/workflows/ci.yml | The YAML file defining the GitHub Actions workflow.                   |
 
 _______________
-
-Pallavi branch created
