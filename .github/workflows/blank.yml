@@ -44,13 +44,13 @@ name: CI
 #           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-on:
-  push:
-    branches: [ "Anand" ]
-
 # on:
-#   pull_request:
-#     types: [opened, reopened, ready_for_review]
+#   push:
+#     branches: [ "Anand" ]
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
   issue_comment:
 jobs:
   pr_agent_job:
