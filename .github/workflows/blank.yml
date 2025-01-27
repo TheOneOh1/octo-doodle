@@ -59,7 +59,7 @@ jobs:
     steps:
       # This step checks out a copy of your repository.
       - uses: actions/checkout@v4
-      - uses: sshnaidm/gpt-code-review-action@v2.0
+      - uses: sshnaidm/gpt-code-review-action@v1.0
         with:
           openai-key: ${{ secrets.OPENAI_API_KEY }}
           # Post comment with text even if step failed
