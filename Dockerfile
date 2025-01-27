@@ -1,5 +1,5 @@
 # Vulnerable: Using latest tag instead of specific version
-FROM nginx:latest
+FROM nginx:alpine
 
 # Vulnerable: Running as root
 USER root
