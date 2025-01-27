@@ -1,45 +1,66 @@
 name: CI
 
+# on:
+#   # Triggers the workflow on push or pull request events but only for the "main" branch
+#   push:
+#     paths-ignore:
+#       - 'README.md'
+#     branches: [ "main" ]
+
+  workflow_dispatch:
+
+# jobs:
+#   build:
+#     runs-on: self-hosted
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: build image
+#         run: |
+#           sudo docker build -t my-image:latest .
+#           sudo docker images
+
+#       - name: stop previous container
+#         run: |
+#           chmod +x kill_container.sh
+#           ./kill_container.sh
+          
+#       - name: spin up the container
+#         run: |
+#           sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
+
+#       - name: Archive html file
+#         run: |
+#           docker save my-image > octo-doodle-image.tar
+#       - uses: actions/upload-artifact@v4
+#         with:
+#           path: octo-doodle-image.tar
+  
+#   test:
+#     runs-on: self-hosted
+#     steps:
+#       - uses: sonarsource/sonarqube-scan-action@master
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    paths-ignore:
-      - 'README.md'
-    branches: [ "main" ]
+    branches: [ "Anand" ]
 
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-
-      - name: build image
-        run: |
-          sudo docker build -t my-image:latest .
-          sudo docker images
-
-      - name: stop previous container
-        run: |
-          chmod +x kill_container.sh
-          ./kill_container.sh
-          
-      - name: spin up the container
-        run: |
-          sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
-
-      - name: Archive html file
-        run: |
-          docker save my-image > octo-doodle-image.tar
-      - uses: actions/upload-artifact@v4
+      # This step checks out a copy of your repository.
+      - uses: actions/checkout@v3
+      - uses: sshnaidm/gpt-code-review-action
         with:
-          path: octo-doodle-image.tar
-  
-  test:
-    runs-on: self-hosted
-    steps:
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          openai-key: ${{ secrets.OPENAI_API_KEY }}
+          # Post comment with text even if step failed
+          post-if-error: 'true'
