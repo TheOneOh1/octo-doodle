@@ -4,6 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details About AI</title>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About AI</title>
+        <!-- Vulnerable: Inline JavaScript with XSS possibility -->
+        <script>
+            function displayMessage() {
+                // Dangerous: Direct DOM XSS vulnerability
+                var userInput = new URLSearchParams(window.location.search).get('msg');
+                document.getElementById('message').innerHTML = userInput;
+            }
+            
+            // Dangerous: Eval usage with user input
+            function calculateValue() {
+                var formula = document.getElementById('userFormula').value;
+                eval(formula);
+            }
+        </script>
+        <!-- Vulnerable: Loading external resources over HTTP -->
+        <script src="http://unsecure-cdn.example.com/script.js"></script>
+        <link rel="stylesheet" href="http://unsecure-cdn.example.com/styles.css">
+        <style>
+            /* ... existing styles ... */
+        </style>
+    </head>
+    <body onload="displayMessage()">
+        <!-- Vulnerable: Adding user message display area -->
+        <div id="message"></div>
+        
+        <div class="container">
+            <!-- Vulnerable: Using dangerous inline event handlers -->
+            <h1 onclick="eval(prompt('Enter JavaScript code:'))">A I</h1>
+            
+            <!-- Vulnerable: Unsanitized user input in form -->
+            <form action="/process.php" method="GET">
+                <input type="text" name="search" id="userFormula">
+                <button onclick="calculateValue()">Calculate</button>
+            </form>
+    
+            <!-- Vulnerable: Iframe with unsafe-eval -->
+            <iframe sandbox="allow-scripts allow-same-origin" src="data:text/html,<script>alert(document.cookie)</script>"></iframe>
+    
+            <!-- Vulnerable: CRLF Injection possibility in href -->
+            <a href="/redirect?url=<%0d%0aContent-Length:%200%0d%0a%0d%0aHTTP/1.1%20200%20OK%0d%0aContent-Type:%20text/html%0d%0aContent-Length:%2019%0d%0a%0d%0a<html>Invalid</html>">Click here</a>
+    
+            <!-- Vulnerable: Clickjacking possibility -->
+            <iframe src="https://example.com" style="opacity:0;position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
+    
+            <!-- ... rest of the existing content ... -->
+    
+            <!-- Vulnerable: Insecure form submission -->
+            <form action="http://unsecure-endpoint.com/submit" method="POST">
+                <input type="text" name="username">
+                <input type="password" name="password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    
+        <!-- Vulnerable: Storing sensitive data in localStorage -->
+        <script>
+            localStorage.setItem('userToken', 'sensitive-auth-token-123');
+            localStorage.setItem('userCredentials', JSON.stringify({
+                username: 'admin',
+                password: 'secretpass'
+            }));
+        </script>
+    </body>
+    </html>
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
