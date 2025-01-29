@@ -29,17 +29,17 @@ jobs:
         run: |
           sudo docker run -v images:/usr/share/nginx/html/images:ro -p 80:80 --name octo-doodle -d my-image
 
-      - name: Archive html file
-        run: |
-          docker save my-image > octo-doodle-image.tar
-      - uses: actions/upload-artifact@v4
-        with:
-          path: octo-doodle-image.tar
+      # - name: Archive html file
+      #   run: |
+      #     docker save my-image > octo-doodle-image.tar
+      # - uses: actions/upload-artifact@v4
+      #   with:
+      #     path: octo-doodle-image.tar
   
-  test:
-    runs-on: self-hosted
-    steps:
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  # test:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: sonarsource/sonarqube-scan-action@master
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
